@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 단어 시험</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>PDF/PNG 단어 시험 생성기</h1>
+        
+        <div class="upload-section">
+            <p>단어 시험을 볼 파일을 선택하세요.</p>
+            <input type="file" id="file-input" accept=".pdf, .png, .jpg, .jpeg">
+            <button id="upload-button">단어 추출하기</button>
+        </div>
+
+        <div id="result-section">
+            <h4>🧠 AI 분석 결과</h4>
+            <textarea id="extracted-text" rows="10" readonly></textarea>
+        </div>
+
+        <div id="test-config-section" class="hidden">
+            <h4>📋 시험 설정</h4>
+            <div class="config-item">
+                <label for="test-type">시험 종류:</label>
+                <select id="test-type">
+                    <option value="word-to-def">단어 맞히기</option>
+                    <option value="def-to-word">뜻 맞히기</option>
+                </select>
+            </div>
+            <div class="config-item">
+                <label for="num-questions">문제 수:</label>
+                <input type="number" id="num-questions" value="10" min="1">
+            </div>
+            <button id="start-test-button">시험 시작</button>
+        </div>
+
+        <div id="test-section" class="hidden">
+            <h3>📝 단어 시험</h3>
+            <div id="questions-container"></div>
+            <button id="submit-test-button">결과 확인</button>
+        </div>
+        
+        <div id="result-display-section" class="hidden">
+            <h3>💯 시험 결과</h3>
+            <p id="score-text"></p>
+            <div id="review-container"></div>
+            <button id="back-to-start-button">새로운 시험 시작하기</button>
+        </div>
+            
+    </div> <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+</body>
+</html>

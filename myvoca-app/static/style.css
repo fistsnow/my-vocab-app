@@ -1,0 +1,214 @@
+/* 전체 페이지 기본 설정 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 20px; /* 화면 가장자리에 여백 추가 */
+}
+
+/* 메인 콘텐츠 컨테이너 */
+.container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 700px;
+    width: 95%;
+    margin: 40px auto; /* 위아래 여백을 주고, 수평 가운데 정렬 */
+}
+
+/* 제목 스타일 */
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h3, h4 {
+    text-align: center;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* 파일 업로드 섹션 */
+.upload-section p {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.upload-section input[type="file"] {
+    display: block;
+    margin: 20px auto;
+}
+
+.upload-section button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.2s;
+}
+
+.upload-section button:hover {
+    background-color: #1558b8;
+}
+
+/* AI 분석 결과 텍스트 영역 */
+#result-section textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 숨김 클래스 */
+.hidden {
+    display: none;
+}
+
+/* 시험 설정 섹션 */
+#test-config-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.config-item {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#start-test-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+#start-test-button:hover {
+    background-color: #218838;
+}
+
+/* 시험 문제 영역 */
+#test-section {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.question-block {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.question-block p {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.choices label {
+    display: block;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.choices label:hover {
+    background-color: #e9ecef;
+}
+
+.choices input {
+    margin-right: 12px;
+}
+
+#submit-test-button {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+#submit-test-button:hover {
+    background-color: #0069d9;
+}
+
+/* --- 채점 및 결과 표시 스타일 --- */
+.choices label.correct {
+    background-color: #d4edda; /* 초록색 배경 */
+    border-color: #c3e6cb;
+    font-weight: bold;
+}
+
+.choices label.incorrect {
+    background-color: #f8d7da; /* 빨간색 배경 */
+    border-color: #f5c6cb;
+}
+
+#result-display-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px; /* 위쪽과 간격 추가 */
+    padding: 20px;
+    border-top: 2px solid #eee;
+}
+
+#score-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+#back-to-start-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: auto;
+    margin: 0;
+}
+
+#back-to-start-button:hover {
+    background-color: #5a6268;
+}
