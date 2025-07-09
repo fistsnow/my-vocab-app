@@ -51,7 +51,7 @@ def upload_file():
         
         raw_text = ""
         try:
-            prompt = "이 이미지에 있는 단어와 뜻을 '단어: 뜻' 형식으로 한 줄에 하나씩 정리해서 텍스트로 추출해줘."
+            prompt = "이 이미지에 있는 단어와 뜻을 '단어: 뜻' 형식으로 한 줄에 하나씩 정리해서 텍스트로 추출해줘. 다른 부가적인 설명은 모두 제외해줘."
             images_to_process = []
 
             if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
@@ -63,23 +63,27 @@ def upload_file():
                 response = model.generate_content([prompt, img])
                 raw_text += response.text + "\n"
             
-            # --- 👇 텍스트 파싱 및 개수 세는 로직 추가 👇 ---
+            # --- 👇 텍스트 파싱 로직을 더 견고하게 수정했습니다. 👇 ---
             parsed_words = []
-            for line in raw_text.strip().split('\n'):
+            cleaned_text = raw_text.replace("```", "").strip() # 마크다운 코드 블록 제거
+            
+            for line in cleaned_text.split('\n'):
+                # ':'가 포함된 줄만 처리하도록 강화
                 if ':' in line:
                     parts = line.split(':', 1)
-                    word = parts[0].strip()
-                    definition = parts[1].strip()
-                    if word and definition:
+                    # "단어:" 부분이 비어있거나 "뜻:" 부분이 비어있는 경우를 방지
+                    if len(parts) == 2 and parts[0].strip() and parts[1].strip():
+                        word = parts[0].strip()
+                        definition = parts[1].strip()
                         parsed_words.append({'word': word, 'definition': definition})
-            # --- 👆 여기까지 추가 ---
+            # --- 👆 여기까지 수정 ---
 
             return jsonify({
                 'status': 'success', 
                 'message': f'{filename} 파일 AI 분석 성공!',
-                'text': raw_text, # 원본 텍스트도 전달
-                'parsed_words': parsed_words, # 파싱된 단어 리스트 전달
-                'word_count': len(parsed_words) # 총단어 수 전달
+                'text': raw_text,
+                'parsed_words': parsed_words,
+                'word_count': len(parsed_words)
             })
         except Exception as e:
             return jsonify({'status': 'error', 'message': f'AI 분석 중 에러 발생: {str(e)}'})
