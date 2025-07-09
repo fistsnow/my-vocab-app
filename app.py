@@ -63,20 +63,20 @@ def upload_file():
                 response = model.generate_content([prompt, img])
                 raw_text += response.text + "\n"
             
-            # --- 👇 텍스트 파싱 로직을 더 견고하게 수정했습니다. 👇 ---
+            # --- 👇 AI의 실제 응답을 로그로 출력하는 코드 (디버깅용) 👇 ---
+            print(f"--- AI Raw Response ---\n{raw_text}\n-------------------------")
+            # --- 👆 이 부분을 추가했습니다 ---
+
             parsed_words = []
-            cleaned_text = raw_text.replace("```", "").strip() # 마크다운 코드 블록 제거
+            cleaned_text = raw_text.replace("```", "").strip()
             
             for line in cleaned_text.split('\n'):
-                # ':'가 포함된 줄만 처리하도록 강화
                 if ':' in line:
                     parts = line.split(':', 1)
-                    # "단어:" 부분이 비어있거나 "뜻:" 부분이 비어있는 경우를 방지
                     if len(parts) == 2 and parts[0].strip() and parts[1].strip():
                         word = parts[0].strip()
                         definition = parts[1].strip()
                         parsed_words.append({'word': word, 'definition': definition})
-            # --- 👆 여기까지 수정 ---
 
             return jsonify({
                 'status': 'success', 
