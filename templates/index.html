@@ -13,6 +13,15 @@
         
         <div class="upload-section">
             <p>단어 시험을 볼 파일을 선택하세요.</p>
+            
+            <div class="config-item language-select">
+                <label for="source-language">원본 언어:</label>
+                <select id="source-language">
+                    <option value="중국어">중국어</option>
+                    <option value="영어">영어</option>
+                    <option value="일본어">일본어</option>
+                    </select>
+            </div>
             <input type="file" id="file-input" accept=".pdf, .png, .jpg, .jpeg">
             <button id="upload-button">단어 추출하기</button>
         </div>
@@ -46,12 +55,13 @@
         
         <div id="result-display-section" class="hidden">
             <h3>💯 시험 결과</h3>
-            <p id="score-text"></p>
+            <p id="score-text"></p> 
             <div id="review-container"></div>
             <button id="back-to-start-button">새로운 시험 시작하기</button>
         </div>
             
-    </div> <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </div> 
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     
 </body>
 </html>
